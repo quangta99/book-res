@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './share/navbar/navbar.component';
 
 import {DropdownModule} from 'primeng/dropdown';
+import {TabViewModule} from 'primeng/tabview';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import {DropdownModule} from 'primeng/dropdown';
     BrowserModule,
     AppRoutingModule,
     DropdownModule,
+    TabViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
