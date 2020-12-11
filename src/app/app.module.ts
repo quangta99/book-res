@@ -8,6 +8,8 @@ import { NavbarComponent } from './share/navbar/navbar.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabViewModule} from 'primeng/tabview';
 import { HomeComponent } from './component/home/home.component';
+import {CarouselModule} from 'primeng/carousel';
+import {CardModule} from 'primeng/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,9 @@ import { HomeComponent } from './component/home/home.component';
     BrowserModule,
     AppRoutingModule,
     DropdownModule,
-    TabViewModule
+    TabViewModule,
+    CarouselModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
