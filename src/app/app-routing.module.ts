@@ -1,3 +1,4 @@
+import { BookComponent } from './component/book/book.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { NgModule } from '@angular/core';
@@ -8,7 +9,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home',             component: HomeComponent },
   { path: 'login',            component: LoginComponent },
-  { path: 'register',         component: RegisterComponent}
+  { path: 'book',             component: BookComponent},
+  { path: 'register',         component: RegisterComponent},
 ];
 
 @NgModule({

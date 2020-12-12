@@ -13,6 +13,12 @@ import {CardModule} from 'primeng/card';
 import { LoginComponent } from './component/login/login.component';
 import { FooterComponent } from './share/footer/footer.component';
 import { RegisterComponent } from './component/register/register.component';
+import { BookComponent } from './component/book/book.component';
+import {GalleriaModule} from 'primeng/galleria';
+import {CalendarModule} from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DialogModule} from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,15 +26,21 @@ import { RegisterComponent } from './component/register/register.component';
     HomeComponent,
     LoginComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     DropdownModule,
     TabViewModule,
     CarouselModule,
-    CardModule
+    CardModule,
+    GalleriaModule,
+    CalendarModule,
+    FormsModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
