@@ -64,14 +64,8 @@
     border-left: 8px solid red;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
-.row:hover .card-form{
-    filter:blur(3px);
-    opacity:.5;
-    transform: scale(.98);
-    box-shadow:none;
-}
 .row:hover .card-form:hover{
-    transform:scale(1.01);
+    transform:scale(1.015);
     filter:blur(0px);
     opacity:1;
     box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
