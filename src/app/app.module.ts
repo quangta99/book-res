@@ -10,11 +10,15 @@ import {TabViewModule} from 'primeng/tabview';
 import { HomeComponent } from './component/home/home.component';
 import {CarouselModule} from 'primeng/carousel';
 import {CardModule} from 'primeng/card';
+import { LoginComponent } from './component/login/login.component';
+import { FooterComponent } from './share/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
