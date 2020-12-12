@@ -12,13 +12,15 @@ import {CarouselModule} from 'primeng/carousel';
 import {CardModule} from 'primeng/card';
 import { LoginComponent } from './component/login/login.component';
 import { FooterComponent } from './share/footer/footer.component';
+import { RegisterComponent } from './component/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
