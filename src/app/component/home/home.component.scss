@@ -59,3 +59,36 @@
 .resForm{
     margin-bottom: 20px;
 }
+.categoryTag:hover {
+    animation-duration: 0.25s;
+    border-left: 8px solid red;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+.row:hover .card-form{
+    filter:blur(3px);
+    opacity:.5;
+    transform: scale(.98);
+    box-shadow:none;
+}
+.row:hover .card-form:hover{
+    transform:scale(1.01);
+    filter:blur(0px);
+    opacity:1;
+    box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
+}
+.orderNow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.orderNow:hover{
+    background: rgba(0, 0, 0, .5);
+}
+.btnOrder{
+    position: absolute;
+    opacity: 0;
+    transition: opacity .45s ease;
+}
+.orderNow:hover .btnOrder{
+    opacity: 1;
+}
