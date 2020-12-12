@@ -16,14 +16,16 @@
 .tranpent-in {
     display: inline-block;
 	padding: 10px 14px;
-	color: #FFF;
+    color: #FFF;
+    border-color: rgba(255, 255, 255, 0.178) ;
 	text-decoration: none;
 	font-size: 14px;
 	line-height: 120%;
-	background-color: rgba(255,255,255, 0);
+	background-color: rgba(255, 255, 255, 0.178);
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-	border-radius: 4px;
+    border-radius: 4px;
+
 	-webkit-transition: background-color 300ms ease;
 	-moz-transition: background-color 300ms ease;
 	transition: background-color 300ms ease;
