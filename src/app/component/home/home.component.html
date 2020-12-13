@@ -82,63 +82,22 @@
             <h4>ĐỊA ĐIỂM</h4>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="col-lg-3 col-md-3 col-sm-3" *ngFor="let res of restaurants | async">
                 <div class="card-form">
                     <div class="text-center orderNow">
-                        <img class="imgRes-sale" src="https://images.foody.vn/res/g104/1034628/prof/s380x244/foody-upload-api-foody-mobile-1-200728144458.jpg">
+                        <img class="imgRes-sale" src='{{res.img}}'>
                         <button class="btn btn-danger btnOrder">Đặt ngay</button>
                     </div>
                     <div class="card-body">
-                        <h6>Con Gà Mái - Cơm Gà Phú Yên - Pasteur</h6>
-                        <p class="address">182A Pasteur, P. Bến Nghé, Quận 1, TP. HCM</p>
-                        <hr>
-                        <h6 style="color:dodgerblue;">Cả ngày - <span class="h6" style="color: orange;">Giảm 15%</span></h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <div class="card-form">
-                    <div class="text-center orderNow">
-                        <img class="imgRes-sale" src="https://images.foody.vn/res/g72/715566/prof/s380x244/foody-upload-api-foody-mobile-8-200921145431.jpg">
-                        <button class="btn btn-danger btnOrder">Đặt ngay</button>
-                    </div>
-                    <div class="card-body">
-                        <h6>Con Gà Mái - Cơm Gà Phú Yên - Pasteur</h6>
-                        <p class="address">182A Pasteur, P. Bến Nghé, Quận 1, TP. HCM</p>
-                        <hr>
-                        <h6 style="color:dodgerblue;">Cả ngày - <span class="h6" style="color: orange;">Giảm 15%</span></h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <div class="card-form">
-                    <div class="text-center orderNow">
-                        <img class="imgRes-sale" src="https://images.foody.vn/res/g104/1038229/prof/s380x244/image-7a8450b7-200908105706.jpeg">
-                        <button class="btn btn-danger btnOrder">Đặt ngay</button>
-                    </div>
-                    <div class="card-body">
-                        <h6>Con Gà Mái - Cơm Gà Phú Yên - Pasteur</h6>
-                        <p class="address">182A Pasteur, P. Bến Nghé, Quận 1, TP. HCM</p>
-                        <hr>
-                        <h6 style="color:dodgerblue;">Cả ngày - <span class="h6" style="color: orange;">Giảm 15%</span></h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <div class="card-form">
-                    <div class="text-center orderNow">
-                        <img class="imgRes-sale" src="https://images.foody.vn/res/g100/998991/prof/s380x244/foody-upload-api-foody-mobile-11fba6ad9fc6a112928c-200115170746.jpg">
-                        <button class="btn btn-danger btnOrder">Đặt ngay</button>
-                    </div>
-                    <div class="card-body">
-                        <h6>Con Gà Mái - Cơm Gà Phú Yên - Pasteur</h6>
-                        <p class="address">182A Pasteur, P. Bến Nghé, Quận 1, TP. HCM</p>
+                        <h6>{{res.name}}</h6>
+                        <p class="address">{{res.address}}</p>
                         <hr>
                         <h6 style="color:dodgerblue;">Cả ngày - <span class="h6" style="color: orange;">Giảm 15%</span></h6>
                     </div>
                 </div>
             </div>
         </div>
+        <app-test></app-test>
         <div class="resForm p-2">
             <div class="tagName">
                 <i style="color: crimson;" class="fa fa-flag" aria-hidden="true"></i>
