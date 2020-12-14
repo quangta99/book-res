@@ -19,9 +19,6 @@ import {CalendarModule} from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DialogModule} from 'primeng/dialog';
-import {AccordionModule} from 'primeng/accordion';
-import { UserComponent } from './component/user/user.component';
-import { AboutUsComponent } from './component/about-us/about-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +27,7 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     LoginComponent,
     FooterComponent,
     RegisterComponent,
-    BookComponent,
-    UserComponent,
-    AboutUsComponent
+    BookComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +41,6 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     CalendarModule,
     FormsModule,
     DialogModule,
-    AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
