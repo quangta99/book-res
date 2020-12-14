@@ -23,6 +23,7 @@ import {DialogModule} from 'primeng/dialog';
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './reducers/restaurant.reducer';
 import { TestComponent } from './component/test/test.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { TestComponent } from './component/test/test.component';
     FooterComponent,
     RegisterComponent,
     BookComponent,
-    TestComponent
+    TestComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

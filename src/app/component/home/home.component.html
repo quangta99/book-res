@@ -81,23 +81,33 @@
             <i style="color: crimson;" class="fa fa-map-marker" aria-hidden="true"></i>
             <h4>ĐỊA ĐIỂM</h4>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3" *ngFor="let res of restaurants | async">
-                <div class="card-form">
-                    <div class="text-center orderNow">
-                        <img class="imgRes-sale" src='{{res.img}}'>
-                        <button class="btn btn-danger btnOrder">Đặt ngay</button>
-                    </div>
-                    <div class="card-body">
-                        <h6>{{res.name}}</h6>
-                        <p class="address">{{res.address}}</p>
-                        <hr>
-                        <h6 style="color:dodgerblue;">Cả ngày - <span class="h6" style="color: orange;">Giảm 15%</span></h6>
+        <p-tabView>
+            <p-tabPanel header="Mới">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3" *ngFor="let res of restaurants | async">
+                        <div class="card-form">
+                            <div class="text-center orderNow">
+                                <img class="imgRes-sale" src='{{res.img}}'>
+                                <button class="btn btn-danger btnOrder">Đặt ngay</button>
+                            </div>
+                            <div class="card-body">
+                                <h6>{{res.name}}</h6>
+                                <p class="address">{{res.address}}</p>
+                                <hr>
+                                <h6 style="color:dodgerblue;">Cả ngày - <span class="h6" style="color: orange;">Giảm 15%</span></h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <app-test></app-test>
+                <app-test></app-test>
+            </p-tabPanel>
+            <p-tabPanel header="Nổi bật">
+                Content 2
+            </p-tabPanel>
+            <p-tabPanel header="Đặt nhiều">
+                Content 3
+            </p-tabPanel>
+        </p-tabView>
         <div class="resForm p-2">
             <div class="tagName">
                 <i style="color: crimson;" class="fa fa-flag" aria-hidden="true"></i>
