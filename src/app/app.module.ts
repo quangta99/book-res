@@ -19,6 +19,10 @@ import {CalendarModule} from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DialogModule} from 'primeng/dialog';
+
+import {StoreModule} from '@ngrx/store';
+import {reducer} from './reducers/restaurant.reducer';
+import { TestComponent } from './component/test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +31,8 @@ import {DialogModule} from 'primeng/dialog';
     LoginComponent,
     FooterComponent,
     RegisterComponent,
-    BookComponent
+    BookComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,9 @@ import {DialogModule} from 'primeng/dialog';
     CalendarModule,
     FormsModule,
     DialogModule,
+    StoreModule.forRoot({
+      restaurant: reducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
