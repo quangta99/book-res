@@ -5,25 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './share/navbar/navbar.component';
 
-import {DropdownModule} from 'primeng/dropdown';
-import {TabViewModule} from 'primeng/tabview';
 import { HomeComponent } from './component/home/home.component';
-import {CarouselModule} from 'primeng/carousel';
-import {CardModule} from 'primeng/card';
 import { LoginComponent } from './component/login/login.component';
 import { FooterComponent } from './share/footer/footer.component';
 import { RegisterComponent } from './component/register/register.component';
 import { BookComponent } from './component/book/book.component';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+import { UserComponent } from './component/user/user.component';
+
+import {DropdownModule} from 'primeng/dropdown';
+import {TabViewModule} from 'primeng/tabview';
+import {CarouselModule} from 'primeng/carousel';
+import {CardModule} from 'primeng/card';
 import {GalleriaModule} from 'primeng/galleria';
 import {CalendarModule} from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DialogModule} from 'primeng/dialog';
-
-import {StoreModule} from '@ngrx/store';
-import {reducer} from './reducers/restaurant.reducer';
-import { TestComponent } from './component/test/test.component';
-import { AboutUsComponent } from './component/about-us/about-us.component';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,8 +33,8 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     FooterComponent,
     RegisterComponent,
     BookComponent,
-    TestComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +48,8 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
     CalendarModule,
     FormsModule,
     DialogModule,
-    StoreModule.forRoot({
-      restaurant: reducer
-    })
+    MessageModule,
+    MessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

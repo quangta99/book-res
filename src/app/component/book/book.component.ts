@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BookComponent implements OnInit {
   images: any[];
   date: Date;
-  time:Date;
+  time: Date;
   dates: Date[];
   rangeDates: Date[];
   minDate: Date;
@@ -55,12 +55,6 @@ export class BookComponent implements OnInit {
     this.maxDate = new Date();
     this.maxDate.setMonth(nextMonth);
     this.maxDate.setFullYear(nextYear);
-    if (this.date === undefined){
-      this.date = today;
-    }
-    if (this.time === undefined){
-      this.time = today;
-    }
     const invalidDate = new Date();
     invalidDate.setDate(today.getDate() - 1);
     this.invalidDates = [today, invalidDate];

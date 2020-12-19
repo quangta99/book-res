@@ -1,3 +1,4 @@
+import { UserComponent } from './component/user/user.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { BookComponent } from './component/book/book.component';
 import { LoginComponent } from './component/login/login.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'book',             component: BookComponent},
   { path: 'register',         component: RegisterComponent},
   { path: 'about',            component: AboutUsComponent},
+  { path: 'user',            component: UserComponent},
 ];
 
 @NgModule({
