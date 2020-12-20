@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,16 +10,17 @@ export class RegisterComponent implements OnInit {
   password: string;
   repassword: string;
   equalPassword: false;
-  constructor() { }
+  email: string;
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.get();
   }
   checkEqualPassword(): void {
     if (this.password !== this.repassword) {
-      this.equalPassword = false;
     }
     else {
-
+      this.userService.register(this.email, this.password);
     }
   }
 }
