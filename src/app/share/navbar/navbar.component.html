@@ -3,11 +3,13 @@
         <div class="">
             <a routerLink="/home"><img src="../../../assets/BookRes.png" class="img-brand" /></a>
         </div>
-        <button class="navbar-toggler btn btn-outline-danger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler btn btn-outline-danger" type="button" data-toggle="collapse"
+            data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
+            aria-label="Toggle navigation">
             <i class="pi pi-align-justify"></i>
         </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarToggler">
-            <ul class="navbar-nav mt-2 mt-lg-0 mr-5">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarToggler">
+            <ul class="navbar-nav mt-2 mt-lg-0 d-flex justify-content-end" style="width: 57%;">
                 <li class="nav-item active">
                     <a class="nav-link" routerLink='/home'>Đặt chỗ <span class="sr-only">(current)</span></a>
                 </li>
@@ -18,13 +20,15 @@
                     <a class="nav-link" routerLink='/about'>Về chúng tôi</a>
                 </li>
             </ul>
-            <div class="searchBar align-items-center mr-1">
-                <input class="searchInput mb-1" type="text" placeholder="Tìm nhà hàng...">
-                <a href="#" class="searchIcon"><i class="pi pi-search"></i></a>
+            <div class="d-flex">
+                <div class="searchBar align-items-center mr-1">
+                    <input class="searchInput mb-1" type="text" placeholder="Tìm nhà hàng...">
+                    <a href="#" class="searchIcon"><i class="pi pi-search"></i></a>
+                </div>
+                <a routerLink="/login" class="btn btn-outline-primary p-2">
+                    Đăng nhập
+                </a>
             </div>
-            <a routerLink="/login" class="btn btn-outline-primary p-2">
-                Đăng nhập
-            </a>
         </div>
     </div>
 </nav>
