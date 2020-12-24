@@ -1,6 +1,12 @@
 {
-    "/api": {
-      "target": "",
+    "/connect/*": {
+      "target": "http://25.81.40.169:5000/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/api/*": {
+      "target": "http://25.81.40.169:5000/",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true

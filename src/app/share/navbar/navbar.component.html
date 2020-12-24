@@ -20,14 +20,17 @@
                     <a class="nav-link" routerLink='/about'>Về chúng tôi</a>
                 </li>
             </ul>
-            <div class="d-flex">
+            <div class="d-flex align-items-center justify-content-center">
                 <div class="searchBar align-items-center mr-1">
                     <input class="searchInput mb-1" type="text" placeholder="Tìm nhà hàng...">
                     <a href="#" class="searchIcon"><i class="pi pi-search"></i></a>
                 </div>
-                <a routerLink="/login" class="btn btn-outline-primary p-2">
-                    Đăng nhập
-                </a>
+                <div>
+                    <a *ngIf="authService.getToken() === null" routerLink="/login" class="btn btn-outline-primary p-2">
+                        Đăng nhập
+                    </a>
+                    <a *ngIf="authService.getToken() !== null" routerLink="/user" class="text-primary p-2">{{user.userName}}</a>
+                </div>
             </div>
         </div>
     </div>

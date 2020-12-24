@@ -4,9 +4,9 @@
             <div class="card-form p-2">
                 <img class="img-avartar"
                     src="https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/120193913_1763329917149975_8442262845118514174_n.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=RVWgOVKyrWYAX_S1gmh&_nc_ht=scontent.fsgn1-1.fna&oh=215cd7de8c8326120fe09aafd0182dbd&oe=6003FCB7">
-                <h5 class="text-center"><b>Quang</b></h5>
-                <h6 class="text-center">0398139295</h6>
-                <a class="text-primary">Thay ảnh đại diện</a>
+                <h5 class="text-center"><b>{{user.name}}</b></h5>
+                <h6 class="text-center">{{user.phone}}</h6>
+                <a (click)="LogOut()" class="text-danger">Đăng xuất</a>
             </div>
         </div>
         <div class="col-lg-9">
@@ -17,23 +17,43 @@
                             <i class="pi pi-calendar mr-1"></i>
                             <span>Thông tin</span>
                         </ng-template>
-                        <form>
+                        <div>
                             <div class="form-group">
                                 <label>Tên</label>
-                                <input type="text" class="form-control tranpent-in" placeholder="Quang">
+                                <input type="text" class="form-control tranpent-in" placeholder="{{user.name}}"
+                                    [(ngModel)]="temp.name">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control tranpent-in" placeholder="txqsevena@gmail.com">
+                                <input type="text" class="form-control tranpent-in" placeholder="{{user.email}}"
+                                    disabled>
+                                <a class="h6 text-danger p-1" *ngIf="user.emailConfirmed === false">Email của bạn chưa
+                                    được xác thực</a>
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input type="text" class="form-control tranpent-in" placeholder="0398139295">
+                                <input type="text" class="form-control tranpent-in" placeholder="{{user.phone}}"
+                                    [(ngModel)]="temp.phone" mask="000-000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label>Đường</label>
+                                <input type="text" class="form-control tranpent-in" placeholder="{{user.street}}"
+                                    [(ngModel)]="temp.street">
+                            </div>
+                            <div class="form-group">
+                                <label>Phường</label>
+                                <input type="text" class="form-control tranpent-in" placeholder="{{user.ward}}"
+                                    [(ngModel)]="temp.ward">
+                            </div>
+                            <div class="form-group">
+                                <label>Quận</label>
+                                <input type="text" class="form-control tranpent-in" placeholder="{{user.district}}"
+                                    [(ngModel)]="temp.district">
                             </div>
                             <div class="text-right">
-                                <a class="text-primary">Thay đổi thông tin</a>
+                                <a class="text-primary" (click)="ChangeInfor()">Thay đổi thông tin</a>
                             </div>
-                        </form>
+                        </div>
                     </p-tabPanel>
                     <p-tabPanel>
                         <ng-template pTemplate="header">
@@ -41,19 +61,54 @@
                             <span>Đổi mật khẩu</span>
                         </ng-template>
                         <div class="form-group">
-                            <label>Nhập mật khẩu cũ</label>
-                            <input type="text" class="form-control tranpent-in">
+                            <label>Mật khẩu cũ</label>
+                            <input type="password" class="form-control tranpent-in" required minlength="8"
+                                [(ngModel)]="oldpassword">
                         </div>
                         <div class="form-group">
                             <label>Mật khẩu mới</label>
-                            <input type="password" class="form-control tranpent-in" required minlength="6" [(ngModel)]="password">
+                            <input type="password" class="form-control tranpent-in" required minlength="8"
+                                [(ngModel)]="password">
                         </div>
                         <div class="form-group">
                             <label>Nhập lại mật khẩu mới</label>
                             <input type="password" class="form-control tranpent-in" [(ngModel)]="repassword">
-                            <p-message *ngIf="equalPassword==false" severity="error" text="Mật khẩu mới không khớp"></p-message>
+                            <p-message *ngIf="equalPassword==false" severity="error" text="Mật khẩu mới không khớp">
+                            </p-message>
                         </div>
                         <button class="btn btn-primary" (click)="changePassword()">Đổi mật khẩu</button>
+                        <p-dialog header="Thông báo" [(visible)]="displayNotiPass" [style]="{width: '50vw'}"
+                            [baseZIndex]="10000">
+                            <p>Đổi mật khẩu thành công, vui lòng đăng nhập lại
+                            </p>
+                            <ng-template pTemplate="footer">
+                                <p-button icon="pi pi-check" (click)="redirectToLogin()" label="Ok"
+                                    styleClass="p-button-text"></p-button>
+                            </ng-template>
+                        </p-dialog>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <i class="pi pi-link mr-1"></i>
+                            <span>Đổi Email</span>
+                        </ng-template>
+                        <div class="form-group">
+                            <label>Email Mới</label>
+                            <input type="email" class="form-control tranpent-in" required minlength="8"
+                                [(ngModel)]="newEmail">
+                            <p-message *ngIf="checkEmail === false" severity="error" text="Vui lòng nhập đúng email">
+                            </p-message>
+                        </div>
+                        <button class="btn btn-primary" (click)="changeEmail()">Đổi Email</button>
+                        <p-dialog header="Thông báo" [(visible)]="displayNotiEmail" [style]="{width: '50vw'}"
+                            [baseZIndex]="10000">
+                            <p>Đổi email thành công
+                            </p>
+                            <ng-template pTemplate="footer">
+                                <p-button icon="pi pi-check" (click)="reload()" label="Ok" styleClass="p-button-text">
+                                </p-button>
+                            </ng-template>
+                        </p-dialog>
                     </p-tabPanel>
                     <p-tabPanel>
                         <ng-template pTemplate="header">

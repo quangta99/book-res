@@ -4,8 +4,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './share/navbar/navbar.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
+import { NavbarComponent } from './share/navbar/navbar.component';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { FooterComponent } from './share/footer/footer.component';
@@ -27,6 +28,13 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {PasswordModule} from 'primeng/password';
+import { RecoveryComponent } from './component/recovery/recovery.component';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +45,8 @@ import {PasswordModule} from 'primeng/password';
     RegisterComponent,
     BookComponent,
     AboutUsComponent,
-    UserComponent
+    UserComponent,
+    RecoveryComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +64,8 @@ import {PasswordModule} from 'primeng/password';
     MessagesModule,
     HttpClientModule,
     ProgressSpinnerModule,
-    PasswordModule
+    PasswordModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]

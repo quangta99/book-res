@@ -1,22 +1,31 @@
-<div class="align-items-center ustify-content-center" style="background-image: url('https://cdn.hipwallpaper.com/i/55/79/QLfGr0.jpg'); height: 900px; display: grid;">
-        <div class="row justify-content-center align-items-center p-3">
-            <div class="col-lg-3 col-sm-6">
-                <div class="card p-3">
-                    <h5 class="text-center text-white mb-4 mt-2">Đăng nhập</h5>
-                    <form class="p-2">
-                        <div class="form-group">
-                          <input type="email" class="form-control tranpent-in" placeholder="Email đăng nhập">
-                        </div>
-                        <div class="form-group">
-                          <input type="password" class="form-control tranpent-in" placeholder="Nhập mật khẩu">
-                        </div>
-                        <button style="width:100%" type="submit" class="btn btn-danger">Đăng nhập</button>
-                        <p class="text-white mt-2">Bạn chưa có tài khoản ? <span><a class="h6" routerLink="/register">Đăng kí</a></span></p>
-                        <div class="mt-2">
-                            <p class="text-white">Hoặc đăng nhập với <span class="m-1"><img class="imgIcon img-fluid" src="../../../assets/facebook.png"></span><span class="m-1"><img class="imgIcon img-fluid" src="../../../assets/google.jpg"></span></p>
-                        </div>
-                      </form>
-                </div>
-            </div>
+<div class="align-items-center ustify-content-center"
+  style="background-image: url('https://cdn.hipwallpaper.com/i/55/79/QLfGr0.jpg'); height: 900px; display: grid;">
+  <div class="row justify-content-center align-items-center p-3">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card p-3">
+        <h5 class="text-center text-white mb-4 mt-2">Đăng nhập</h5>
+        <div class="p-2">
+          <div class="form-group">
+            <input type="text" class="form-control tranpent-in" placeholder="Email đăng nhập" [(ngModel)]="email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control tranpent-in" placeholder="Nhập mật khẩu" [(ngModel)]="password">
+          </div>
+          <a class="p text-secondary" routerLink="/recovery">Quên mật khẩu</a>
+          <div class="mt-1 mb-3">
+            <p-message class="mt-1 mb-3" *ngIf="show === true" severity="error"
+              text="Tài khoản hoặc mật khẩu không đúng"></p-message>
+          </div>
+          <button style="width:100%" type="submit" class="btn btn-danger" (click)="Login()">Đăng nhập</button>
+          <p class="text-white mt-2">Bạn chưa có tài khoản ? <span><a class="h6" routerLink="/register">Đăng
+                kí</a></span></p>
+          <div class="mt-2">
+            <p class="text-white">Hoặc đăng nhập với <span class="m-1"><img class="imgIcon img-fluid"
+                  src="../../../assets/facebook.png"></span><span class="m-1"><img class="imgIcon img-fluid"
+                  src="../../../assets/google.jpg"></span></p>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 </div>

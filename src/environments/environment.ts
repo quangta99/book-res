@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:4200'
+  url: 'http://localhost:4200',
+  client_secret: '67822fbd-110d-4ab3-b55f-e7441cde52fa',
+  client_id: 'angular.client'
 };
 
 /*

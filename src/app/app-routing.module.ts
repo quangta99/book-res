@@ -1,3 +1,4 @@
+import { RecoveryComponent } from './component/recovery/recovery.component';
 import { UserComponent } from './component/user/user.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { BookComponent } from './component/book/book.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register',         component: RegisterComponent},
   { path: 'about',            component: AboutUsComponent},
   { path: 'user',            component: UserComponent},
+  { path: 'recovery',            component: RecoveryComponent},
 ];
 
 @NgModule({

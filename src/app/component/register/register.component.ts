@@ -8,18 +8,35 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   password: string;
   repassword: string;
-  equalPassword: false;
+  requireLenght = true;
   email: string;
+  checkEmail = true;
+  show = false;
+  display: boolean;
   constructor(private userService: UserService) {
    }
 
   ngOnInit(): void {
   }
-  checkEqualPassword(): void {
-    if (this.password !== this.repassword) {
+  register(): void {
+    this.show = false;
+    this.checkEmail = true;
+    this.requireLenght = true;
+    if (this.validateEmail(this.email) === false){
+      this.checkEmail = false;
+    }
+    else if (this.password.length < 8) {
+      this.requireLenght = false;
     }
     else {
-      this.userService.register(this.email, this.password);
+      this.userService.register(this.email.toString(), this.password.toString(), this);
     }
+  }
+  validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+  redirectToLogin() {
+    window.location.replace('/login');
   }
 }

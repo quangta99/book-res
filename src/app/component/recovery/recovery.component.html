@@ -1,0 +1,42 @@
+<div class="align-items-center ustify-content-center"
+  style="background-image: url('https://cdn.hipwallpaper.com/i/55/79/QLfGr0.jpg'); height: 900px; display: grid;">
+  <div class="row justify-content-center align-items-center p-3">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card p-3" *ngIf="check === false">
+        <h5 class="text-center text-white mb-4 mt-2">Quên mật khẩu</h5>
+        <div class="p-2">
+          <div class="form-group">
+            <input type="email" class="form-control tranpent-in" placeholder="Email đăng nhập" [(ngModel)]="email">
+            <div class="mt-2">
+              <p-message *ngIf="checkEmail === false" severity="error" text="Vui lòng nhập đúng email"></p-message>
+              <p-message *ngIf="checkExistEmail === false" severity="error" text="Email tài khoản không tồn tại">
+              </p-message>
+            </div>
+          </div>
+          <button style="width:100%" type="submit" class="btn btn-danger" (click)="recovery()">Xác nhận</button>
+          <p class="text-white mt-2">Quay lại trang đăng nhập <span><a class="h6" routerLink="/login">Đăng
+                nhập</a></span></p>
+        </div>
+      </div>
+      <div class="card p-3 d-flex justify-content-certer align-items-center" *ngIf="check === true">
+        <h5 class="text-white text-center">Kiểm tra email của bạn và điền thông tin bên dưới</h5>
+        <input type="text" class="form-control tranpent-in" placeholder="Nhập mã token" [(ngModel)]="activeToken">
+        <input type="password" class="form-control tranpent-in mt-1" placeholder="Nhập mật khẩu mới"
+          [(ngModel)]="password">
+        <input type="password" class="form-control tranpent-in mt-1" placeholder="Nhập lại mật khẩu mới"
+          [(ngModel)]="repassword">
+        <p-message *ngIf="password !== repassword" severity="error" text="Mật khẩu không khớp"></p-message>
+        <p-message *ngIf="checkToken === false" severity="error" text="Mã Token sai"></p-message>
+        <button (click)="changePasswordWithReco()" class="btn btn-danger mt-3">Đặt lại mật khẩu</button>
+        <p-dialog header="Thông báo" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+          <p>Đặt lại mật khẩu thành công
+          </p>
+          <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="redirectToLogin()" label="Ok" styleClass="p-button-text">
+            </p-button>
+          </ng-template>
+        </p-dialog>
+      </div>
+    </div>
+  </div>
+</div>
