@@ -14,6 +14,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { BookComponent } from './component/book/book.component';
 import { AboutUsComponent } from './component/about-us/about-us.component';
 import { UserComponent } from './component/user/user.component';
+import { RecoveryComponent } from './component/recovery/recovery.component';
 
 import {DropdownModule} from 'primeng/dropdown';
 import {TabViewModule} from 'primeng/tabview';
@@ -28,8 +29,6 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {PasswordModule} from 'primeng/password';
-import { RecoveryComponent } from './component/recovery/recovery.component';
-
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 const maskConfig: Partial<IConfig> = {
   validation: false,

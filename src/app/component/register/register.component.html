@@ -1,4 +1,4 @@
-<div class="align-items-center ustify-content-center"
+<div class="align-items-center mt-5"
   style="background-image: url('https://cdn.hipwallpaper.com/i/55/79/QLfGr0.jpg'); height: 900px; display: grid;">
   <div class="row justify-content-center align-items-center p-3">
     <div class="col-lg-3 col-sm-6">
@@ -17,10 +17,19 @@
           <div class="form-group">
             <input type="password" class="form-control tranpent-in" placeholder="Nhập lại mật khẩu"
               [(ngModel)]="repassword">
-            <p-message *ngIf="password !== repassword" severity="error" text="Mật khẩu không khớp"></p-message>
-            <p-message *ngIf="show === true" severity="error" text="Tài khoản này đã được tạo"></p-message>
+            <div class="mt-2 mb-2">
+              <p-message *ngIf="password !== repassword" severity="error" text="Mật khẩu không khớp"></p-message>
+              <p-message *ngIf="show === true" severity="error" text="Tài khoản này đã được tạo"></p-message>
+              <p-message class="mt-1 mb-3" *ngIf="error === true" severity="error" text="Đã có lỗi xảy ra"></p-message>
+            </div>
           </div>
-          <button style="width:100%" type="submit" class="btn btn-danger" (click)="register()">Đăng
+          <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true"
+            style="background-color: transparent;">
+            <p-progressSpinner [style]="{width: '40px', height: '40px'}" strokeWidth="8" animationDuration=".5s">
+            </p-progressSpinner>
+          </div>
+          <button *ngIf="loading === false" style="width:100%" type="submit" class="btn btn-danger"
+            (click)="register()">Đăng
             kí</button>
           <p class="text-white mt-2">Quay lại trang đăng nhập <span><a class="h6" routerLink="/login">Đăng
                 nhập</a></span></p>

@@ -1,7 +1,7 @@
-<div class="align-items-center ustify-content-center"
+<div class="align-items-center mt-5"
   style="background-image: url('https://cdn.hipwallpaper.com/i/55/79/QLfGr0.jpg'); height: 900px; display: grid;">
   <div class="row justify-content-center align-items-center p-3">
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card p-3">
         <h5 class="text-center text-white mb-4 mt-2">Đăng nhập</h5>
         <div class="p-2">
@@ -15,8 +15,15 @@
           <div class="mt-1 mb-3">
             <p-message class="mt-1 mb-3" *ngIf="show === true" severity="error"
               text="Tài khoản hoặc mật khẩu không đúng"></p-message>
+            <p-message class="mt-1 mb-3" *ngIf="error === true" severity="error" text="Đã có lỗi xảy ra"></p-message>
           </div>
-          <button style="width:100%" type="submit" class="btn btn-danger" (click)="Login()">Đăng nhập</button>
+          <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true"
+            style="background-color: transparent;">
+            <p-progressSpinner [style]="{width: '40px', height: '40px'}" strokeWidth="8" animationDuration=".5s">
+            </p-progressSpinner>
+          </div>
+          <button *ngIf="loading === false" style="width:100%" type="submit" class="btn btn-danger"
+            (click)="Login()">Đăng nhập</button>
           <p class="text-white mt-2">Bạn chưa có tài khoản ? <span><a class="h6" routerLink="/register">Đăng
                 kí</a></span></p>
           <div class="mt-2">

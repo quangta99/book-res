@@ -10,6 +10,7 @@ export class UserService {
   localStorage: Storage;
   constructor(private http: HttpClient, private authService: AuthService) { }
   register(email, password, callback) {
+    callback.loading = true;
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { Email: email, Password: password };
     this.http.post('/api/user', body, { headers: header }).subscribe(
@@ -18,14 +19,21 @@ export class UserService {
       (error: any) => {
         if (error.status === 200) {
           callback.display = true;
+          callback.loading = false
         }
         else if (error.status === 400) {
           callback.show = true;
+          callback.loading = false;
+        }
+        else if (error.status === 500) {
+          callback.error = true;
+          callback.loading = false;
         }
       }
     );
   }
   login(email, password, callback) {
+    callback.loading = true;
     const body = 'client_secret=' + environment.client_secret + '&client_id=' + environment.client_id + '&username=' + email + '&password=' + password + '&grant_type=password';
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded;');
     this.http.post('/connect/token', body, { headers: headers }).subscribe((res: any) => {
@@ -34,8 +42,12 @@ export class UserService {
         window.location.replace('/home');
       }
     }, (error) => {
+      callback.loading = false;
       if (error.status === 400) {
         callback.show = true;
+      }
+      if(error.status === 500) {
+        callback.error = true;
       }
     });
   }

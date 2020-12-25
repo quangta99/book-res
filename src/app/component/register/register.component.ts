@@ -13,10 +13,14 @@ export class RegisterComponent implements OnInit {
   checkEmail = true;
   show = false;
   display: boolean;
+  loading: boolean;
+  error: boolean;
   constructor(private userService: UserService) {
    }
 
   ngOnInit(): void {
+    this.error = false;
+    this.loading = false;
   }
   register(): void {
     this.show = false;
