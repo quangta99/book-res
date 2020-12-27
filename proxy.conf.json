@@ -10,5 +10,12 @@
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
+    },
+    "/res/*": {
+      "target": "http://25.81.40.169:5001/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": { "^/res": "/api/" }
     }
   }

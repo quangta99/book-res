@@ -3,19 +3,27 @@
         <div class="mt-4 p-4 card-form">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 p-2">
-                    <img class="img-fluid"
-                        src="https://images.foody.vn/res/g104/1034628/prof/s380x244/foody-upload-api-foody-mobile-1-200728144458.jpg">
+                    <p-galleria [(value)]="restaurant.imageUrls" [responsiveOptions]="responsiveGalleri" [numVisible]="5"> 
+                        <ng-template pTemplate="item" let-item>
+                            <img  [src]="item" style="width: 100%; display: block; max-height: 450px;"/>
+                        </ng-template>
+                        <ng-template pTemplate="thumbnail" let-item>
+                            <div class="d-flex p-nogutter justify-content-center">
+                                <img class="img-fluid" [src]="item" style="display: block;"/>
+                            </div>
+                        </ng-template>
+                    </p-galleria>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <a class="text-primary">Home >> <span><a class="text-primary">TP.HCM >></a></span><span><a
-                                class="text-black">Quán ăn</a></span></a>
-                    <h4>Mộc - Riêu & Nướng - Võ Văn Kiệt</h4>
-                    <p>318 - 320 Võ Văn Kiệt (Gần Ngã 3 Đề Thám), P. Cô Giang, Quận 1</p>
+                                class="text-black">{{restaurant.typeName}}</a></span></a>
+                    <h4>{{restaurant.restaurantName}}</h4>
+                    <p>{{restaurant.address.street}}</p>
                     <hr>
                     <button (click)="showBasicDialog()" class="btn btn-danger">Đặt Bàn</button>
                     <div class="d-flex align-items-center mt-2">
                         <p><i style="height:24px;" class="fa fa-clock-o p-1" aria-hidden="true"></i></p>
-                        <p class="ml-1">11:00 - 23:00</p>
+                        <p class="ml-1">{{restaurant.workTime.openTime}} - <span>{{restaurant.workTime.closeTime}}</span></p>
                     </div>
                     <div class="d-flex align-items-center mt-2">
                         <p><i style="height:24px;" class="fa fa-usd p-1" aria-hidden="true"></i></p>
@@ -27,10 +35,10 @@
         <p-dialog header="Thông tin đặt chỗ" [(visible)]="displayTab" [style]="{width: '80vw'}" [baseZIndex]="10000">
             <div class="row">
                 <div class="col-lg-6">
-                    <a>Home >> <span>TP.HCM >> <span>Nhà hàng</span></span></a>
+                    <a>Home >> <span>TP.HCM >> <span>{{restaurant.typeName}}</span></span></a>
                     <hr style="color: blue;">
-                    <h5 class="text-primary mt-3">Thai Express - Phan Xích Long</h5>
-                    <p class="text-secondary">158 Phan Xích Long, P. 2, Phú Nhuận</p>
+                    <h5 class="text-primary mt-3">{{restaurant.restaurantName}}</h5>
+                    <p class="text-secondary">{{restaurant.address.street}}</p>
                     <hr>
                     <h5 class="text-primary mt-3">Giảm 30% tổng hóa đơn từ ngày 07/12 ~ 20/12</h5>
                     <p>- Ưu đãi áp dụng tối đa 50 khách/ ngày.
@@ -117,46 +125,23 @@
                 </div>
             </div>
         </p-dialog>
-        <div class="mt-4 card-form p-4" style="z-index: 0 !important;">
-            <h4 style="color: orange;">Menu</h4>
+        <div class="mt-4 card-form p-4" style="z-index: 0 !important;"  *ngFor="let item of restaurant.menus">
+            <h4 style="color: orange;">{{item.menuName}}</h4>
             <hr>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" *ngFor="let food of item.foodItems">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 p-2">
                             <img class="img-fluid"
-                                src="https://cdn.cet.edu.vn/wp-content/uploads/2018/03/hinh-anh-lau-thai-chua-cay.jpg">
+                                src="{{food.imageUrl}}" style="width: 100%; height: 135px;">
                         </div>
                         <div class="col-lg-6">
-                            <h5>Lẩu thái</h5>
-                            <h6 class="text-secondary">200,000đ</h6>
-                            <div class="decription">Thai suki, known simply as suki in Thailand, is a Thai variant of
-                                hot
-                                pot, a communal dish
-                                where diners dip meat, seafood, noodles, dumplings and vegetables into a pot of broth
-                                cooking at the table and dip it into a spicy "sukiyaki sauce" before eating.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <img class="img-fluid"
-                                src="https://cdn.cet.edu.vn/wp-content/uploads/2018/03/hinh-anh-lau-thai-chua-cay.jpg">
-                        </div>
-                        <div class="col-lg-6">
-                            <h5>Lẩu thái</h5>
-                            <h6 class="text-secondary">200,000đ</h6>
-                            <div class="decription">Thai suki, known simply as suki in Thailand, is a Thai variant of
-                                hot
-                                pot, a communal dish
-                                where diners dip meat, seafood, noodles, dumplings and vegetables into a pot of broth
-                                cooking at the table and dip it into a spicy "sukiyaki sauce" before eating.</div>
+                            <h5>{{food.foodName}}</h5>
+                            <div class="decription">{{food.description}}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div></div>
         </div>
         <div class="mt-4 card-form p-4" style="z-index: 0 !important;">
             <p-tabView>

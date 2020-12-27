@@ -1,0 +1,34 @@
+<div class="container" style="margin-top: 90px;">
+    <div class="title-section text-center col-12">
+        <h4 class="text-uppercase">Kết quả tìm kiếm</h4>
+        <hr>
+    </div>
+    <div *ngFor="let item of restaurants">
+        <div class="card-form" *ngIf="result === true">
+            <div class="row p-2">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 col-6 d-flex justify-content-center align-items-center">
+                    <a class="text-center">
+                        <img  style="width:100%; max-width: 200px; min-height: 170px; max-height: 170px;" src="{{item.imageUrls[0]}}" />
+                    </a>
+                </div>
+                <div class="p-2 d-flex justify-content-center align-items-center text-center col-lg-4 col-md-4 col-sm-4 col-xs-4 col-4">
+                    <div>
+                        <h4  style="font-family: sans-serif;">{{item.restaurantName}}</h4>
+                        <h5 >{{item.address.street}}</h5>
+                    </div>
+                </div>
+                <div class="justify-content-center d-flex align-items-center text-center col-lg-3 col-md-3 col-sm-3 col-xs-3 col-3">
+                    <div>
+                        <button (click)="viewRestaurant(item.resId, item)"
+                            class="btn btn-outline-danger">Đặt chỗ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-2" *ngIf="result === false">
+        <h4>Không tìm thấy nhà hàng nào</h4>
+    </div>
+    <div class="mt-4 d-flex justify-content-center" style="height: 30px; margin-top: 50px;">
+    </div>
+</div>

@@ -1,21 +1,33 @@
-import { Time } from "@angular/common";
-
-export class Restaurant {
-    name: string;
-    address: Direction;
-    imgs: Array<Imgs>;
-    time: TimeOC;
+export interface ListRestaurants {
+    
 }
-export class Direction{
+export interface RestaurantInformation {
+    resId: string;
+    restaurantName: string;
+    address: AddressModel;
+    typeName: Array<string>;
+    seats: number;
+    workTime: WorkTimeModel;
+    menus: Array<MenuModel>;
+    imageUrls: Array<string>;
+}
+export interface AddressModel {
+    ward: string;
     street: string;
     district: string;
-    city: string;
-    ward: string;
+    country: string;
 }
-export class Imgs {
-    url: string;
-}
-export class TimeOC{
+export interface WorkTimeModel {
     openTime: string;
     closeTime: string;
+}
+export interface MenuModel {
+    menuName: string;
+    decription: string;
+    foodItems: Array<FoodItemModel>;
+}
+export interface FoodItemModel {
+    foodName: string;
+    imageUrl: string;
+    description: string;
 }

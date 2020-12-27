@@ -64,8 +64,8 @@
     border-left: 8px solid red;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-.row:hover .card-form:hover{
-    transform:scale(1.015);
+.card-form:hover{
+    transform:scale(1.02);
     filter:blur(0px);
     opacity:1;
     box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
@@ -76,7 +76,7 @@
     align-items: center;
 }
 .orderNow:hover{
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
 }
 .btnOrder{
     position: absolute;

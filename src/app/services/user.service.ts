@@ -19,7 +19,7 @@ export class UserService {
       (error: any) => {
         if (error.status === 200) {
           callback.display = true;
-          callback.loading = false
+          callback.loading = false;
         }
         else if (error.status === 400) {
           callback.show = true;
