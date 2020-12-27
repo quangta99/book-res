@@ -24,3 +24,24 @@ div.decription {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.imgRes-sale{
+  max-width: 380px;
+  width: 100%;
+  height: 170px;
+}
+.orderNow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.orderNow:hover{
+  background: rgba(0, 0, 0, 0.5);
+}
+.btnOrder{
+  position: absolute;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.orderNow:hover .btnOrder{
+  opacity: 1;
+}

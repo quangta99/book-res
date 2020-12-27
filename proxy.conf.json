@@ -17,5 +17,12 @@
       "logLevel": "debug",
       "changeOrigin": true,
       "pathRewrite": { "^/res": "/api/" }
+    },
+    "/book/*": {
+      "target": "http://25.81.40.169:5002/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": { "^/book": "/api/" }
     }
   }

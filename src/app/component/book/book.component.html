@@ -3,13 +3,14 @@
         <div class="mt-4 p-4 card-form">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 p-2">
-                    <p-galleria [(value)]="restaurant.imageUrls" [responsiveOptions]="responsiveGalleri" [numVisible]="5"> 
+                    <p-galleria [(value)]="restaurant.imageUrls" [responsiveOptions]="responsiveGalleri"
+                        [numVisible]="5">
                         <ng-template pTemplate="item" let-item>
-                            <img  [src]="item" style="width: 100%; display: block; max-height: 450px;"/>
+                            <img [src]="item" style="width: 100%; display: block; max-height: 450px;" />
                         </ng-template>
                         <ng-template pTemplate="thumbnail" let-item>
                             <div class="d-flex p-nogutter justify-content-center">
-                                <img class="img-fluid" [src]="item" style="display: block;"/>
+                                <img class="img-fluid" [src]="item" style="display: block;" />
                             </div>
                         </ng-template>
                     </p-galleria>
@@ -23,7 +24,8 @@
                     <button (click)="showBasicDialog()" class="btn btn-danger">Đặt Bàn</button>
                     <div class="d-flex align-items-center mt-2">
                         <p><i style="height:24px;" class="fa fa-clock-o p-1" aria-hidden="true"></i></p>
-                        <p class="ml-1">{{restaurant.workTime.openTime}} - <span>{{restaurant.workTime.closeTime}}</span></p>
+                        <p class="ml-1">{{restaurant.workTime.openTime}} -
+                            <span>{{restaurant.workTime.closeTime}}</span></p>
                     </div>
                     <div class="d-flex align-items-center mt-2">
                         <p><i style="height:24px;" class="fa fa-usd p-1" aria-hidden="true"></i></p>
@@ -60,18 +62,15 @@
                         Quý khách vui lòng đặt chỗ ít nhất 1 giờ trước khi đến để được phục vụ tốt nhất.
 
                         - Nhà hàng chỉ giữ bàn 15 phút tính từ thời gian khách đặt chỗ.</p>
-                    <img class="img-fluid mt-1"
-                        src="https://media.foody.vn/images/beauty-upload-api-ca-ri-massaman-ga-200907175315.jpg">
-                    <img class="img-fluid mt-1"
-                        src="https://media.foody.vn/images/beauty-upload-api-ca-ri-massaman-ga-200907175315.jpg">
-                    <img class="img-fluid mt-1"
-                        src="https://media.foody.vn/images/beauty-upload-api-ca-ri-massaman-ga-200907175315.jpg">
-                    <img class="img-fluid mt-1"
-                        src="https://media.foody.vn/images/beauty-upload-api-ca-ri-massaman-ga-200907175315.jpg">
+                    <div *ngFor="let item of restaurant.imageUrls">
+                        <img class="img-fluid mt-1"
+                            src="{{item}}"
+                            style="max-height: 450px; width: 100%;">
+                    </div>
                 </div>
                 <div class="col-lg-6 p-2">
                     <div class="card-form p-5">
-                        <h5>Thai Express - Phan Xích Long</h5>
+                        <h5>{{restaurant.restaurantName}}</h5>
                         <div class="mt-4" style="border-radius: 5px; border: solid 1px #b2bec3;">
                             <h6 class="text-center">Cả ngày - Giảm 30% tổng hóa đơn từ ngày 07/12 ~ 20/12</h6>
                         </div>
@@ -91,49 +90,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-lg-6">
-                                <p-dropdown placeholder="Số người lớn" optionLabel="name" [showClear]="true"
-                                    inputId="adult">
-                                </p-dropdown>
-                            </div>
-                            <div class="col-lg-6">
-                                <p-dropdown placeholder="Số trẻ em" optionLabel="name" [showClear]="true"
-                                    inputId="children">
-                                </p-dropdown>
-                            </div>
-                        </div>
                         <div class="mt-4">
                             <h6>Thông tin liên hệ</h6>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" placeholder="Anh Quang">
+                                    <input type="text" class="form-control" placeholder="Anh/ Chị {{bookingModel.userName}}" [(ngModel)]="bookingModel.userName">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" placeholder="0123456789">
+                                    <input type="text" class="form-control" placeholder="Số điện thoại {{bookingModel.phone}}" [(ngModel)]="bookingModel.phone">
                                 </div>
                             </div>
-                            <input type="text" class="form-control mt-2" placeholder="Email">
-                            <div class="checkbox mt-2">
-                                <label><input class="mr-1" type="checkbox" value="">Xác nhận qua email</label>
-                            </div>
-                            <textarea style="width:100%" rows="5" cols="50">Ghi chú</textarea>
-                            <button style="width:100%" class="btn btn-danger mt-2" (click)="displayTab=false">ĐẶT
+                            <input type="text" class="form-control mt-2" placeholder="Email {{bookingModel.email}}" [(ngModel)]="bookingModel.email">
+                            <textarea class="mt-1" style="width:100%" rows="5" cols="50" [(ngModel)]="bookingModel.note">Ghi chú</textarea>
+                            <button style="width:100%" class="btn btn-danger mt-2" (click)="booking()">ĐẶT
                                 CHỖ</button>
                         </div>
                     </div>
                 </div>
             </div>
         </p-dialog>
-        <div class="mt-4 card-form p-4" style="z-index: 0 !important;"  *ngFor="let item of restaurant.menus">
+        <div class="mt-4 card-form p-4" style="z-index: 0 !important;" *ngFor="let item of restaurant.menus">
             <h4 style="color: orange;">{{item.menuName}}</h4>
             <hr>
             <div class="row">
                 <div class="col-lg-6" *ngFor="let food of item.foodItems">
                     <div class="row">
                         <div class="col-lg-6 p-2">
-                            <img class="img-fluid"
-                                src="{{food.imageUrl}}" style="width: 100%; height: 135px;">
+                            <img class="img-fluid" src="{{food.imageUrl}}" style="width: 100%; height: 135px;">
                         </div>
                         <div class="col-lg-6">
                             <h5>{{food.foodName}}</h5>
@@ -176,6 +159,32 @@
                     </iframe>
                 </p-tabPanel>
             </p-tabView>
+        </div>
+        <div class="mt-2 p-2">
+            <p-carousel *ngIf="loading === false" [value]="restaurants" [numVisible]="3" [numScroll]="3" [circular]="true" [autoplayInterval]="3000"
+                [responsiveOptions]="responsiveOptions">
+                <ng-template let-item pTemplate="item">
+                    <div class="p-3">
+                        <div class="card-form">
+                            <div class="text-center orderNow">
+                                <img class="imgRes-sale" src="{{item.imageUrls[0]}}">
+                                <button (click)="viewRestaurant(item.resId, item)" class="btn btn-danger btnOrder">Đặt
+                                    ngay</button>
+                            </div>
+                            <div class="card-body">
+                                <h6 style="height: 40px !important;" class="textSale">Giảm 50% - abcxyz</h6>
+                                <hr>
+                                <h6 style="height: 40px !important;">{{item.restaurantName}}</h6>
+                                <p class="address">{{item.address.street}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+            <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true">
+                <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
+                    strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+            </div>
         </div>
     </div>
 </div>

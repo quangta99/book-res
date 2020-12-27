@@ -1,3 +1,5 @@
+import { BookingService } from './../../services/booking.service';
+import { Booking } from './../../models/booking';
 import { User } from './../../models/user';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
@@ -20,9 +22,11 @@ export class UserComponent implements OnInit {
   displayNotiPass: boolean;
   displayNotiEmail: boolean;
   checkEmail = true;
-  constructor(public userService: UserService, public authService: AuthService) { }
+  bookings = new Array<Booking>();
+  constructor(public userService: UserService, public authService: AuthService, private bookingService: BookingService) { }
 
   ngOnInit(): void {
+    this.bookingService.getBookings(this);
     this.displayNotiPass = false;
     this.displayNotiEmail = false;
     if (this.authService.getToken() !== null){
