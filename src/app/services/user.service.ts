@@ -65,7 +65,8 @@ export class UserService {
         console.log(error);
       });
   }
-  changeInfor(user: User){
+  changeInfor(user: User, callback){
+    callback.loading = true;
     const option = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ export class UserService {
       })
     };
     this.http.put('/api/user', user, option).subscribe((res) => {
-      window.location.reload();
+      callback.loading = false;
     });
   }
   recovery(email, callback) {
@@ -122,6 +123,7 @@ export class UserService {
     } );
   }
   changeEmail(emailToUpdate: string, oldEmail: string, callback){
+    callback.loading = true;
     const option = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -131,8 +133,11 @@ export class UserService {
     const body = { EmailToUpdate: emailToUpdate, OldEmail: oldEmail };
     this.http.post('/api/user/change-email', body, option).subscribe((res) => {
       callback.displayNotiEmail = true;
+      callback.loading = false;
+      callback.ngOnInit();
     }, (error) => {
       if (error.status === 200) {
+        callback.loading = false;
         callback.displayNotiEmail = true;
       }
     } );

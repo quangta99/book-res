@@ -1,5 +1,5 @@
 import { BookingService } from './../../services/booking.service';
-import { Booking } from './../../models/booking';
+import { Booking, Ticket } from './../../models/booking';
 import { User } from './../../models/user';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
@@ -22,13 +22,15 @@ export class UserComponent implements OnInit {
   displayNotiPass: boolean;
   displayNotiEmail: boolean;
   checkEmail = true;
-  bookings = new Array<Booking>();
+  tickets = new Array<Ticket>();
+  loading: boolean;
   constructor(public userService: UserService, public authService: AuthService, private bookingService: BookingService) { }
 
   ngOnInit(): void {
+    this.loading = false;
+    this.displayNotiEmail = false;
     this.bookingService.getBookings(this);
     this.displayNotiPass = false;
-    this.displayNotiEmail = false;
     if (this.authService.getToken() !== null){
       this.userService.getUser(this.authService.getToken(), this);
     }
@@ -87,6 +89,6 @@ export class UserComponent implements OnInit {
       this.temp.district = this.user.district;
     }
     this.temp.email = this.user.email;
-    this.userService.changeInfor(this.temp);
+    this.userService.changeInfor(this.temp, this);
   }
 }

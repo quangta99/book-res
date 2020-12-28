@@ -35,7 +35,7 @@
         <p-carousel *ngIf="loading === false" [value]="restaurants" [numVisible]="3" [numScroll]="3" [circular]="true" [autoplayInterval]="3000"
             [responsiveOptions]="responsiveOptions">
             <ng-template let-item pTemplate="item">
-                <div class="p-3">
+                <div class="p-2">
                     <div class="card-form">
                         <div class="text-center orderNow">
                             <img class="imgRes-sale" src="{{item.imageUrls[0]}}">
@@ -43,7 +43,7 @@
                                 ngay</button>
                         </div>
                         <div class="card-body">
-                            <h6 style="height: 40px !important;" class="textSale">Giảm 50% - abcxyz</h6>
+                            <h6 style="height: 40px !important;" class="textSale">Giảm 10% - Cả tuần</h6>
                             <hr>
                             <h6 style="height: 40px !important;">{{item.restaurantName}}</h6>
                             <p class="address">{{item.address.street}}</p>
@@ -85,12 +85,6 @@
                         </div>
                     </div>
                 </div>
-            </p-tabPanel>
-            <p-tabPanel header="Nổi bật">
-                Content 2
-            </p-tabPanel>
-            <p-tabPanel header="Đặt nhiều">
-                Content 3
             </p-tabPanel>
         </p-tabView>
         <div class="resForm p-2">

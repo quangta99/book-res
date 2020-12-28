@@ -8,3 +8,10 @@ export class Booking {
     note: string;
     resId: string;
 }
+export interface Ticket {
+    atDate: string;
+    restaurantName: string;
+    status: string;
+    ticketId: string;
+    userName: string;
+}

@@ -1,3 +1,4 @@
+import { ContactComponent } from './component/contact/contact.component';
 import { SearchComponent } from './component/search/search.component';
 import { RecoveryComponent } from './component/recovery/recovery.component';
 import { UserComponent } from './component/user/user.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'user',            component: UserComponent},
   { path: 'recovery',            component: RecoveryComponent},
   { path: 'search/:search',            component: SearchComponent},
+  { path: 'contact',            component: ContactComponent},
 ];
 
 @NgModule({

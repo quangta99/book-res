@@ -6,7 +6,7 @@
                     src="https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/120193913_1763329917149975_8442262845118514174_n.jpg?_nc_cat=108&ccb=2&_nc_sid=09cbfe&_nc_ohc=RVWgOVKyrWYAX_S1gmh&_nc_ht=scontent.fsgn1-1.fna&oh=215cd7de8c8326120fe09aafd0182dbd&oe=6003FCB7">
                 <h6 class="text-center" style="font-style: bold;">{{user.name}}</h6>
                 <h6 class="text-center">{{user.phone}}</h6>
-                <a (click)="LogOut()" class="text-danger">Đăng xuất</a>
+                <a (click)="LogOut()" class="text-danger" style="cursor: default;">Đăng xuất</a>
             </div>
         </div>
         <div class="col-lg-9">
@@ -51,7 +51,13 @@
                                     [(ngModel)]="temp.district">
                             </div>
                             <div class="text-right">
-                                <a class="text-primary" (click)="ChangeInfor()">Thay đổi thông tin</a>
+                                <a style="cursor: default;" class="text-primary" (click)="ChangeInfor()">Thay đổi thông tin</a>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true"
+                                style="background-color: transparent;">
+                                <p-progressSpinner [style]="{width: '40px', height: '40px'}" strokeWidth="8"
+                                    animationDuration=".5s">
+                                </p-progressSpinner>
                             </div>
                         </div>
                     </p-tabPanel>
@@ -99,22 +105,46 @@
                             <p-message *ngIf="checkEmail === false" severity="error" text="Vui lòng nhập đúng email">
                             </p-message>
                         </div>
-                        <button class="btn btn-primary" (click)="changeEmail()">Đổi Email</button>
-                        <p-dialog header="Thông báo" [(visible)]="displayNotiEmail" [style]="{width: '50vw'}"
-                            [baseZIndex]="10000">
-                            <p>Đổi email thành công
-                            </p>
-                            <ng-template pTemplate="footer">
-                                <p-button icon="pi pi-check" (click)="reload()" label="Ok" styleClass="p-button-text">
-                                </p-button>
-                            </ng-template>
-                        </p-dialog>
+                        <button *ngIf="loading === false" class="btn btn-primary" (click)="changeEmail()">Đổi
+                            Email</button>
+                        <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true"
+                            style="background-color: transparent;">
+                            <p-progressSpinner [style]="{width: '40px', height: '40px'}" strokeWidth="8"
+                                animationDuration=".5s">
+                            </p-progressSpinner>
+                        </div>
                     </p-tabPanel>
                     <p-tabPanel>
                         <ng-template pTemplate="header">
                             <i class="pi pi-search mr-1"></i>
                             <span>Lịch sử đặt bàn</span>
                         </ng-template>
+                        <p-table [value]="tickets">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Ticket</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-ticket>
+                                <tr>
+                                    <td>
+                                        <div class="overflow">{{ticket.ticketId}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="overflow">{{ticket.userName}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="overflow">{{ticket.atDate}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="overflow">{{ticket.status}}</div>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
                     </p-tabPanel>
                 </p-tabView>
             </div>

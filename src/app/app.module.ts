@@ -32,6 +32,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {PasswordModule} from 'primeng/password';
 import {TableModule} from 'primeng/table';
 import { SearchComponent } from './component/search/search.component';
+import { ContactComponent } from './component/contact/contact.component';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -49,7 +50,8 @@ const maskConfig: Partial<IConfig> = {
     AboutUsComponent,
     UserComponent,
     RecoveryComponent,
-    SearchComponent
+    SearchComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

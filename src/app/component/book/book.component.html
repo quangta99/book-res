@@ -25,11 +25,13 @@
                     <div class="d-flex align-items-center mt-2">
                         <p><i style="height:24px;" class="fa fa-clock-o p-1" aria-hidden="true"></i></p>
                         <p class="ml-1">{{restaurant.workTime.openTime}} -
-                            <span>{{restaurant.workTime.closeTime}}</span></p>
+                            <span>{{restaurant.workTime.closeTime}}</span>
+                        </p>
                     </div>
                     <div class="d-flex align-items-center mt-2">
-                        <p><i style="height:24px;" class="fa fa-usd p-1" aria-hidden="true"></i></p>
-                        <p class="ml-2">Giá trung bình <span>70,000 - 150,000</span></p>
+                        <p class="ml-1">Số lượng bàn: </p>
+                        <p class="ml-1">{{restaurant.seats}}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -63,9 +65,7 @@
 
                         - Nhà hàng chỉ giữ bàn 15 phút tính từ thời gian khách đặt chỗ.</p>
                     <div *ngFor="let item of restaurant.imageUrls">
-                        <img class="img-fluid mt-1"
-                            src="{{item}}"
-                            style="max-height: 450px; width: 100%;">
+                        <img class="img-fluid mt-1" src="{{item}}" style="max-height: 450px; width: 100%;">
                     </div>
                 </div>
                 <div class="col-lg-6 p-2">
@@ -94,16 +94,47 @@
                             <h6>Thông tin liên hệ</h6>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" placeholder="Anh/ Chị {{bookingModel.userName}}" [(ngModel)]="bookingModel.userName">
+                                    <input type="text" class="form-control"
+                                        placeholder="Anh/ Chị {{bookingModel.userName}}"
+                                        [(ngModel)]="bookingModel.userName">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" placeholder="Số điện thoại {{bookingModel.phone}}" [(ngModel)]="bookingModel.phone">
+                                    <input type="text" class="form-control"
+                                        placeholder="Số điện thoại {{bookingModel.phone}}"
+                                        [(ngModel)]="bookingModel.phone" mask="000-000-0000">
                                 </div>
                             </div>
-                            <input type="text" class="form-control mt-2" placeholder="Email {{bookingModel.email}}" [(ngModel)]="bookingModel.email">
-                            <textarea class="mt-1" style="width:100%" rows="5" cols="50" [(ngModel)]="bookingModel.note">Ghi chú</textarea>
-                            <button style="width:100%" class="btn btn-danger mt-2" (click)="booking()">ĐẶT
+                            <input type="text" class="form-control mt-2" placeholder="Email {{bookingModel.email}}"
+                                [(ngModel)]="bookingModel.email">
+                                <p-message class="mt-4" *ngIf="validate===false" severity="error"
+                                text="Vui lòng nhập đúng email">
+                            </p-message>
+                            <textarea class="mt-1" style="width:100%" rows="5" cols="50"
+                                [(ngModel)]="bookingModel.note">Ghi chú</textarea>
+                            <button *ngIf="loading === false" style="width:100%" class="btn btn-danger mt-2"
+                                (click)="booking()">ĐẶT
                                 CHỖ</button>
+                            <p-message class="mt-4" *ngIf="error===true" severity="error"
+                                text="Vui lòng nhập thông tin của bạn">
+                            </p-message>
+                            <p-message class="mt-4" *ngIf="requireField===true" severity="error"
+                                text="Vui lòng nhập thông tin của bạn">
+                            </p-message>
+                            <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true"
+                                style="background-color: transparent;">
+                                <p-progressSpinner [style]="{width: '40px', height: '40px'}" strokeWidth="8"
+                                    animationDuration=".5s">
+                                </p-progressSpinner>
+                            </div>
+                            <p-dialog header="Thông báo" [(visible)]="displayNoti" [style]="{width: '50vw'}"
+                                [baseZIndex]="10001">
+                                <p>Đặt bàn thành công
+                                </p>
+                                <ng-template pTemplate="footer">
+                                    <p-button icon="pi pi-check" (click)="cancel()" label="Ok"
+                                        styleClass="p-button-text"></p-button>
+                                </ng-template>
+                            </p-dialog>
                         </div>
                     </div>
                 </div>
@@ -115,10 +146,10 @@
             <div class="row">
                 <div class="col-lg-6" *ngFor="let food of item.foodItems">
                     <div class="row">
-                        <div class="col-lg-6 p-2">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 p-2">
                             <img class="img-fluid" src="{{food.imageUrl}}" style="width: 100%; height: 135px;">
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                             <h5>{{food.foodName}}</h5>
                             <div class="decription">{{food.description}}</div>
                         </div>
@@ -161,8 +192,12 @@
             </p-tabView>
         </div>
         <div class="mt-2 p-2">
-            <p-carousel *ngIf="loading === false" [value]="restaurants" [numVisible]="3" [numScroll]="3" [circular]="true" [autoplayInterval]="3000"
-                [responsiveOptions]="responsiveOptions">
+            <div class="tagName">
+                <i style="color: crimson;" class="fa fa-tags" aria-hidden="true"></i>
+                <h5>Nhà hàng bạn có thể thích</h5>
+            </div>
+            <p-carousel *ngIf="loading === false" [value]="restaurants" [numVisible]="3" [numScroll]="3"
+                [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
                 <ng-template let-item pTemplate="item">
                     <div class="p-3">
                         <div class="card-form">
@@ -182,8 +217,8 @@
                 </ng-template>
             </p-carousel>
             <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true">
-                <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner"
-                    strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8"
+                    fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
             </div>
         </div>
     </div>
