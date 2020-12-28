@@ -41,9 +41,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.restaurantService.getRestaurants(this);
   }
-  viewRestaurant(id, item: RestaurantInformation){
-    this.router.navigate(['/book', id, JSON.stringify(item)]);
-  }
   getType(type, street) {
     this.restaurantService.getType(type, street, this);
     console.log(type);

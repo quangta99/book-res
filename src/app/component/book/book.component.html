@@ -28,8 +28,11 @@
                             <span>{{restaurant.workTime.closeTime}}</span>
                         </p>
                     </div>
+                    <div class="mt-2 pl-1">
+                        <h6>Số Chỗ: </h6>
+                    </div>
                     <div class="d-flex align-items-center mt-2">
-                        <p class="ml-1">Số lượng bàn: </p>
+                        <p><i style="height:24px;" class="fa fa-users p-1" aria-hidden="true"></i></p>
                         <p class="ml-1">{{restaurant.seats}}
                         </p>
                     </div>
@@ -92,13 +95,13 @@
                         </div>
                         <div class="mt-4">
                             <h6>Thông tin liên hệ</h6>
-                            <div class="row">
-                                <div class="col-lg-6">
+                            <div class="row mt-1">
+                                <div class="col-lg-6 mt-2">
                                     <input type="text" class="form-control"
                                         placeholder="Anh/ Chị {{bookingModel.userName}}"
                                         [(ngModel)]="bookingModel.userName">
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 mt-2">
                                     <input type="text" class="form-control"
                                         placeholder="Số điện thoại {{bookingModel.phone}}"
                                         [(ngModel)]="bookingModel.phone" mask="000-000-0000">
@@ -182,13 +185,6 @@
                         hút khách của Mộc Riêu – Nướng. Đến Mộc Riêu Nướng và trải nghiệm ngay thôi nào!</p>
                     <iframe width="600" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
                 </p-tabPanel>
-                <p-tabPanel header="Bản đồ">
-                    <iframe class="img-fluid"
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3918.2324288146738!2d106.80161941411598!3d10.86991839225808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1588878290282!5m2!1svi!2s"
-                        width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""
-                        aria-hidden="false" tabindex="0">
-                    </iframe>
-                </p-tabPanel>
             </p-tabView>
         </div>
         <div class="mt-2 p-2">
@@ -199,7 +195,7 @@
             <p-carousel *ngIf="loading === false" [value]="restaurants" [numVisible]="3" [numScroll]="3"
                 [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
                 <ng-template let-item pTemplate="item">
-                    <div class="p-3">
+                    <div class="p-2">
                         <div class="card-form">
                             <div class="text-center orderNow">
                                 <img class="imgRes-sale" src="{{item.imageUrls[0]}}">
@@ -207,7 +203,7 @@
                                     ngay</button>
                             </div>
                             <div class="card-body">
-                                <h6 style="height: 40px !important;" class="textSale">Giảm 50% - abcxyz</h6>
+                                <h6 style="height: 40px !important;" class="textSale">Giảm 10% - Cả tuần</h6>
                                 <hr>
                                 <h6 style="height: 40px !important;">{{item.restaurantName}}</h6>
                                 <p class="address">{{item.address.street}}</p>

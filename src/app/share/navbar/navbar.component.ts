@@ -1,3 +1,4 @@
+import { RestaurantService } from './../../services/restaurant.service';
 import { User } from './../../models/user';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
@@ -12,8 +13,9 @@ import { ConfirmationService } from 'primeng/api';
 })
 
 export class NavbarComponent implements OnInit {
+  search: string;
   user = new User();
-  constructor(public userService: UserService, public authService: AuthService) {
+  constructor(public userService: UserService, public authService: AuthService, private restaurantService: RestaurantService) {
   }
 
   ngOnInit(): void {

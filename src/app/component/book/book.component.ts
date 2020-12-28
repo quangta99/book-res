@@ -39,8 +39,8 @@ export class BookComponent implements OnInit {
   requireField: boolean;
   error: boolean;
   validate: boolean = true;
+  id: string;
   constructor(private activatedRoute: ActivatedRoute, private restaurantService: RestaurantService, private router: Router, private authService: AuthService, private bookingService: BookingService, private userService: UserService, public datepipe: DatePipe) {
-    this.restaurant = JSON.parse(activatedRoute.snapshot.params["item"]);
     this.responsiveOptions = [
       {
         breakpoint: '1024px',
@@ -74,6 +74,11 @@ export class BookComponent implements OnInit {
     }
   ];
   ngOnInit(): void {
+    this.sub = this.activatedRoute.params.subscribe((params) => {
+      this.id = params['id'];
+      this.restaurantService.getRestaurantbyId(this.id, this);
+    });
+    console.log(this.restaurant);
     this.error = false;
     this.displayNoti = false;
     this.requireField = false;
@@ -112,7 +117,10 @@ export class BookComponent implements OnInit {
 
   showBasicDialog(): void {
     this.displayTab = true;
-    if (this.authService.getToken() === null) {
+    if (this.date === undefined && this.time === undefined && this.bookingModel.email === null && this.bookingModel.phone === null && this.bookingModel.userName === null && this.bookingModel === null) {
+      this.requireField = true;
+    }
+    else if (this.authService.getToken() === null) {
       this.bookingModel.atDate = this.datepipe.transform(this.date, 'MM/dd/yyyy');
       this.bookingModel.atHour = this.time.toString().slice(16, 18);
       this.bookingModel.atMinute = this.time.toString().slice(19, 21);
@@ -135,49 +143,50 @@ export class BookComponent implements OnInit {
     window.location.reload();
   }
   booking(): void {
-    this.requireField = false;
     this.error = false;
     this.validate = true;
     if (this.authService.getToken() === null) {
-      if (this.date === undefined && this.time === undefined) {
-        this.requireField = true;
-      }
-      this.bookingModel.atDate = this.datepipe.transform(this.date, 'MM/dd/yyyy');
-      this.bookingModel.atHour = this.time.toString().slice(16, 18);
-      this.bookingModel.atMinute = this.time.toString().slice(19, 21);
-      this.bookingModel.phone = this.bookingModel.phone.replace(/\D/g, "")
-        .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
-      this.bookingModel.resId = this.restaurant.resId;
-      if (this.bookingModel.email === null && this.bookingModel.phone === null && this.bookingModel.userName === null && this.bookingModel === null) {
-        this.requireField = true;
-      }
-      else if (this.validateEmail(this.bookingModel.email) === false) {
+      if (this.validateEmail(this.bookingModel.email) === false) {
         this.validate = false;
       }
+      else if(this.bookingModel.phone === undefined && this.bookingModel.userName === undefined && this.date === undefined && this.time === undefined) {
+        this.requireField = true;
+      }
       else {
+        this.bookingModel.atDate = this.datepipe.transform(this.date, 'MM/dd/yyyy');
+        this.bookingModel.atHour = this.time.toString().slice(16, 18);
+        this.bookingModel.atMinute = this.time.toString().slice(19, 21);
+        this.bookingModel.phone = this.bookingModel.phone.replace(/\D/g, "")
+          .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+        this.bookingModel.resId = this.restaurant.resId;
         this.bookingService.bookForCustomer(this.bookingModel, this);
       }
     }
     else {
       if (this.authService.getToken() !== undefined) {
-        if (this.date === undefined && this.time === undefined) {
+        if (this.date === undefined && this.time === undefined && this.bookingModel.phone) {
           this.requireField = true;
         }
-        this.bookingModel.userName = this.user.userName;
-        this.bookingModel.email = this.user.email;
-        if (this.user.phone !== null) {
-          this.bookingModel.phone = this.user.phone.replace(/\D/g, "")
-            .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
-        }
-        this.bookingModel.atDate = this.datepipe.transform(this.date, 'MM/dd/yyyy');
-        this.bookingModel.atHour = this.time.toString().slice(16, 18);
-        this.bookingModel.atMinute = this.time.toString().slice(19, 21);
-        this.bookingModel.resId = this.restaurant.resId;
-        if (this.validateEmail(this.bookingModel.email) === false) {
-          this.validate = false;
+        else if (this.bookingModel.email === undefined && this.bookingModel.phone === undefined && this.bookingModel.userName === undefined) {
+          this.requireField = true;
         }
         else {
-          this.bookingService.bookForUser(this.bookingModel, this);
+          this.bookingModel.userName = this.user.userName;
+          this.bookingModel.email = this.user.email;
+          if (this.user.phone !== null) {
+            this.bookingModel.phone = this.user.phone.replace(/\D/g, "")
+              .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+          }
+          this.bookingModel.atDate = this.datepipe.transform(this.date, 'MM/dd/yyyy');
+          this.bookingModel.atHour = this.time.toString().slice(16, 18);
+          this.bookingModel.atMinute = this.time.toString().slice(19, 21);
+          this.bookingModel.resId = this.restaurant.resId;
+          if (this.validateEmail(this.bookingModel.email) === false) {
+            this.validate = false;
+          }
+          else {
+            this.bookingService.bookForUser(this.bookingModel, this);
+          }
         }
       }
     }

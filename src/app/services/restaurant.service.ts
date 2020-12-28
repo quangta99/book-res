@@ -27,4 +27,17 @@ export class RestaurantService {
       }
     });
   }
+  getRestaurantbyId(id, callback) {
+    return this.http.get('/res/restaurant/all').subscribe((res) => {
+      let restaurants = new Array<RestaurantInformation>();
+      restaurants = res as Array<RestaurantInformation>;
+      let restaurant;
+      restaurants.forEach(item => {
+        if(item.resId === id) {
+          restaurant = item;
+        }
+      });
+      callback.restaurant = restaurant;
+    });
+  }
 }

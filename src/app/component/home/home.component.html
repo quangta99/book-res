@@ -39,7 +39,7 @@
                     <div class="card-form">
                         <div class="text-center orderNow">
                             <img class="imgRes-sale" src="{{item.imageUrls[0]}}">
-                            <button (click)="viewRestaurant(item.resId, item)" class="btn btn-danger btnOrder">Đặt
+                            <button [routerLink]="['/book', item.resId]" class="btn btn-danger btnOrder">Đặt
                                 ngay</button>
                         </div>
                         <div class="card-body">
@@ -73,7 +73,7 @@
                         <div class="card-form">
                             <div class="text-center orderNow">
                                 <img class="imgRes-sale" src='{{item.imageUrls[0]}}'>
-                                <button (click)="viewRestaurant(item.resId, item)" class="btn btn-danger btnOrder">Đặt ngay</button>
+                                <button [routerLink]="['/book', item.resId]" class="btn btn-danger btnOrder">Đặt ngay</button>
                             </div>
                             <div class="card-body">
                                 <h6 style="height: 40px;">{{item.restaurantName}}</h6>

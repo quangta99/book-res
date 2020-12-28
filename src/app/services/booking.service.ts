@@ -11,7 +11,7 @@ export class BookingService {
   bookForCustomer(bookModel, callback){
     callback.loading = true;
     const header = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post('/book/booking/anonymous', bookModel, {headers: header}).subscribe((res) => {
+    this.http.post('/booking/booking/anonymous', bookModel, {headers: header}).subscribe((res) => {
       callback.loading = false;
     }, (error) => {
       if (error.status === 200) {
@@ -32,7 +32,7 @@ export class BookingService {
         'Authorization': `Bearer ${this.authService.getToken()}`
       })
     };
-    this.http.post('/book/booking/user', bookModel, option).subscribe((res) => {
+    this.http.post('/booking/booking/user', bookModel, option).subscribe((res) => {
       callback.loading = false;
     }, (error) => {
       if (error.status === 200) {
@@ -52,9 +52,8 @@ export class BookingService {
         'Authorization': `Bearer ${this.authService.getToken()}`
       })
     };
-    this.http.get('/book/booking/all', option).subscribe((res) => {
+    this.http.get('/booking/booking/all', option).subscribe((res) => {
       callback.tickets = res;
-      console.log(res);
     });
   }
 }

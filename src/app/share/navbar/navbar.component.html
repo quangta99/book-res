@@ -22,8 +22,8 @@
             </ul>
             <div class="d-flex align-items-center">
                 <div class="searchBar align-items-center mr-1">
-                    <input class="searchInput mb-1" type="text" placeholder="Tìm nhà hàng...">
-                    <a href="#" class="searchIcon"><i class="pi pi-search"></i></a>
+                    <input class="searchInput mb-1" type="text" placeholder="Tìm nhà hàng..." [(ngModel)]="search">
+                    <a [routerLink]="['/search', search]" class="searchIcon" style="cursor: default;"><i class="pi pi-search"></i></a>
                 </div>
                 <div>
                     <a *ngIf="authService.getToken() === null" routerLink="/login" class="btn btn-outline-primary p-2">
