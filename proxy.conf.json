@@ -1,25 +1,25 @@
 {
     "/connect/*": {
-      "target": "http://192.168.137.223:5000/",
+      "target": "http://25.81.40.169:5000/",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
     },
     "/api/*": {
-      "target": "http://192.168.137.223:5000/",
+      "target": "http://25.81.40.169:5000/",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
     },
     "/res/*": {
-      "target": "http://192.168.137.223:5001/",
+      "target": "http://25.81.40.169:5001/",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,
       "pathRewrite": { "^/res": "/api/" }
     },
     "/booking/*": {
-      "target": "http://192.168.137.223:5002/",
+      "target": "http://25.81.40.169:5002/",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,
