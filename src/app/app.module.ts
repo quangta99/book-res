@@ -17,20 +17,20 @@ import { AboutUsComponent } from './component/about-us/about-us.component';
 import { UserComponent } from './component/user/user.component';
 import { RecoveryComponent } from './component/recovery/recovery.component';
 
-import {DropdownModule} from 'primeng/dropdown';
-import {TabViewModule} from 'primeng/tabview';
-import {CarouselModule} from 'primeng/carousel';
-import {CardModule} from 'primeng/card';
-import {GalleriaModule} from 'primeng/galleria';
-import {CalendarModule} from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { TabViewModule } from 'primeng/tabview';
+import { CarouselModule } from 'primeng/carousel';
+import { CardModule } from 'primeng/card';
+import { GalleriaModule } from 'primeng/galleria';
+import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DialogModule} from 'primeng/dialog';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {PasswordModule} from 'primeng/password';
-import {TableModule} from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from 'primeng/dialog';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { PasswordModule } from 'primeng/password';
+import { TableModule } from 'primeng/table';
 import { SearchComponent } from './component/search/search.component';
 import { ContactComponent } from './component/contact/contact.component';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
@@ -71,7 +71,7 @@ const maskConfig: Partial<IConfig> = {
     ProgressSpinnerModule,
     PasswordModule,
     NgxMaskModule.forRoot(maskConfig),
-    TableModule
+    TableModule,
   ],
   providers: [
     DatePipe

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   restaurantLoad: Array<RestaurantInformation>;
   over: boolean = false;
   loadingMore: boolean = false;
+  currentTypeName = 'all';
   constructor(private restaurantService: RestaurantService, private userService: UserService, private authService: AuthService, private router: Router) {
     this.token = this.authService.getToken();
     this.responsiveOptions = [
@@ -45,16 +46,19 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.restaurantService.getRestaurants(this);
-    this.restaurantService.getFirstArrRes(this);
-    this.restaurantService.getRestaurantSpliced(this);
+
   }
   getType(type, street) {
-    this.restaurantService.getType(type, street, this);
+    this.currentTypeName = type;
+    this.restaurantService.getRestaurants(this);
     console.log(type);
   }
   loadMore(): void {
     if (this.restaurants === undefined) {
       this.loadingMore = true;
+    }
+    else {
+      this.loadingMore = false;
     }
     if (this.restaurants.length === 0) {
       this.over = true;

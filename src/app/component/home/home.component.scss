@@ -90,3 +90,13 @@
     height: 40px;
     text-overflow: clip;
 }
+.resName {
+    text-overflow: clip;
+    height: 38px;
+    margin-bottom: 20px;
+}
+@media(max-width: 992px) {
+    .resName{
+        margin-bottom: 20px;
+    }
+}

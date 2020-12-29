@@ -11,9 +11,36 @@ export class RestaurantService {
 
   constructor(private http: HttpClient) { }
   getRestaurants(callback) {
-    return this.http.get('/res/restaurant/all').subscribe((res) => {
-      callback.restaurantsSlide = res;
-      callback.loading = false;
+    return this.http.get('/res/restaurant/all').subscribe((res : Array<RestaurantInformation>) => {
+      if(callback.currentTypeName === 'all') {
+        callback.restaurantsSlide = res;
+        callback.loading = false;
+        var resRes = new Array<RestaurantInformation>();
+        res.forEach(x => {
+          resRes.push(x);
+        });
+        callback.restaurants = resRes;
+      }
+      else {
+        let temp = new Array<RestaurantInformation>();
+        res.forEach(x => {
+          if(x.typeName.includes(callback.currentTypeName)){
+            temp.push(x);
+            return;
+          }
+        });
+        var resRes = new Array<RestaurantInformation>();
+        temp.forEach(x => {
+          resRes.push(x);
+        });
+        callback.restaurantsSlide = temp;
+        callback.loading = false;
+        callback.restaurants = resRes;
+      }
+      this.getFirstArrRes(callback);
+      this.getRestaurantSpliced(callback);
+      console.log(callback.restaurantsSlide);
+      console.log(callback.restaurants);
     });
   }
   getType(type: string, street: string, callback) {
@@ -42,26 +69,21 @@ export class RestaurantService {
     });
   }
   getFirstArrRes(callback) {
-    return this.http.get('/res/restaurant/all').subscribe((res) => {
-      let count = 0;
-      const temp = new Array<RestaurantInformation>();
-      const restaurant = res as Array<RestaurantInformation>;
-      restaurant.forEach(item => {
-        count++;
-        if (count < 5) {
-          temp.push(item);
-        }
-      });
-      callback.restaurantLoad = temp;
-      callback.loadingRes = false;
+    let count = 0;
+    const temp = new Array<RestaurantInformation>();
+    const restaurant = callback.restaurants as Array<RestaurantInformation>;
+    restaurant.forEach(item => {
+      if (count++ < 4) {
+        temp.push(item);
+      }
     });
+    callback.restaurantLoad = temp;
+    callback.loadingRes = false;
   }
   getRestaurantSpliced(callback) {
-    return this.http.get('/res/restaurant/all').subscribe((res) => {
-      const temp = res as Array<RestaurantInformation>;
-      temp.splice(0, 4);
-      callback.restaurants = temp;
-      callback.loading = false;
-    });
+    const temp = callback.restaurants as Array<RestaurantInformation>;
+    temp.splice(0, 4);
+    callback.restaurants = temp;
+    callback.loading = false;
   }
 }
