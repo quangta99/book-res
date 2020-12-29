@@ -12,7 +12,7 @@ export class RestaurantService {
   constructor(private http: HttpClient) { }
   getRestaurants(callback) {
     return this.http.get('/res/restaurant/all').subscribe((res) => {
-      callback.restaurants = res;
+      callback.restaurantsSlide = res;
       callback.loading = false;
     });
   }
@@ -20,7 +20,8 @@ export class RestaurantService {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { TypeName: type, Street: street };
     return this.http.post('/res/restaurant/search', body, { headers: header }).subscribe((res) => {
-      callback.restaurants = res;
+      callback.restaurantsSlide = res;
+      callback.restaurantLoad = res;
       const temp = res as Array<RestaurantInformation>;
       if (temp.length === 0) {
         callback.result = false;
@@ -47,12 +48,20 @@ export class RestaurantService {
       const restaurant = res as Array<RestaurantInformation>;
       restaurant.forEach(item => {
         count++;
-        if (count < 3) {
+        if (count < 5) {
           temp.push(item);
         }
       });
       callback.restaurantLoad = temp;
       callback.loadingRes = false;
+    });
+  }
+  getRestaurantSpliced(callback) {
+    return this.http.get('/res/restaurant/all').subscribe((res) => {
+      const temp = res as Array<RestaurantInformation>;
+      temp.splice(0, 4);
+      callback.restaurants = temp;
+      callback.loading = false;
     });
   }
 }
