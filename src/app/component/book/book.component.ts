@@ -157,7 +157,7 @@ export class BookComponent implements OnInit {
         this.bookingModel.atHour = this.time.toString().slice(16, 18);
         this.bookingModel.atMinute = this.time.toString().slice(19, 21);
         this.bookingModel.phone = this.bookingModel.phone.replace(/\D/g, "")
-          .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+        .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
         this.bookingModel.resId = this.restaurant.resId;
         this.bookingService.bookForCustomer(this.bookingModel, this);
       }
@@ -175,8 +175,9 @@ export class BookComponent implements OnInit {
           this.bookingModel.email = this.user.email;
           if (this.user.phone !== null) {
             this.bookingModel.phone = this.user.phone.replace(/\D/g, "")
-              .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+            .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
           }
+          console.log(this.bookingModel.phone);
           this.bookingModel.atDate = this.datepipe.transform(this.date, 'MM/dd/yyyy');
           this.bookingModel.atHour = this.time.toString().slice(16, 18);
           this.bookingModel.atMinute = this.time.toString().slice(19, 21);

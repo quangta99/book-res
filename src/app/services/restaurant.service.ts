@@ -47,11 +47,12 @@ export class RestaurantService {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
     const body = { TypeName: type, Street: street };
     return this.http.post('/res/restaurant/search', body, { headers: header }).subscribe((res) => {
-      callback.restaurantsSlide = res;
-      callback.restaurantLoad = res;
       const temp = res as Array<RestaurantInformation>;
       if (temp.length === 0) {
         callback.result = false;
+      }
+      else {
+        callback.restaurants = temp;
       }
     });
   }
