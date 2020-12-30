@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   repassword: string;
   oldpassword: string;
   equalPassword = true;
-  requireLenght = true;
+  requireLenght: boolean = false;
   newEmail: string;
   user = new User();
   temp = new User();
@@ -24,6 +24,8 @@ export class UserComponent implements OnInit {
   checkEmail = true;
   tickets = new Array<Ticket>();
   loading: boolean;
+  require = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/;
+  requireSpecialCharacter: boolean = false;
   constructor(public userService: UserService, public authService: AuthService, private bookingService: BookingService) { }
 
   ngOnInit(): void {
@@ -47,12 +49,17 @@ export class UserComponent implements OnInit {
     }
   }
   changePassword(): void {
+    this.requireLenght = false;
+    this.requireSpecialCharacter = false;
     this.equalPassword = true;
     if (this.password !== this.repassword) {
       this.equalPassword = false;
     }
     else if (this.password.length < 8) {
       this.requireLenght = false;
+    }
+    else if(!this.password.match(this.require)) {
+      this.requireSpecialCharacter = true;
     }
     else {
       this.userService.changePassword(this.password, this.oldpassword, this);
@@ -77,7 +84,8 @@ export class UserComponent implements OnInit {
       this.temp.name = this.user.name;
     }
     if (this.temp.phone === undefined){
-      this.temp.phone = this.user.phone;
+      this.temp.phone = this.user.phone.replace(/\D/g, "")
+      .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");;
     }
     if (this.temp.street === undefined){
       this.temp.street = this.user.street;

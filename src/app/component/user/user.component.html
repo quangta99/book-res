@@ -51,7 +51,8 @@
                                     [(ngModel)]="temp.district">
                             </div>
                             <div class="text-right">
-                                <a style="cursor: default;" class="text-primary" (click)="ChangeInfor()">Thay đổi thông tin</a>
+                                <a style="cursor: default;" class="text-primary" (click)="ChangeInfor()">Thay đổi thông
+                                    tin</a>
                             </div>
                             <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="loading === true"
                                 style="background-color: transparent;">
@@ -75,6 +76,12 @@
                             <label>Mật khẩu mới</label>
                             <input type="password" class="form-control tranpent-in" required minlength="8"
                                 [(ngModel)]="password">
+                            <div class="mt-2">
+                                <p-message *ngIf="requireLenght === false" severity="error"
+                                text="Mật khẩu cần ít nhất 8 kí tự"></p-message>
+                            <p-message *ngIf="requireSpecialCharacter === true" severity="error"
+                                text="Mật khẩu cần có chữ cái in hoa, số và kí tự đặc biệt"></p-message>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Nhập lại mật khẩu mới</label>

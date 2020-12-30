@@ -8,13 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   password: string;
   repassword: string;
-  requireLenght = true;
+  requireLenght: boolean = false;
   email: string;
   checkEmail = true;
   show = false;
   display: boolean;
   loading: boolean;
-  error: boolean;
+  error: boolean = false;
+  requireSpecialCharacter: boolean = false;
+  require = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/;
   constructor(private userService: UserService) {
    }
 
@@ -23,14 +25,19 @@ export class RegisterComponent implements OnInit {
     this.loading = false;
   }
   register(): void {
+    this.error = false;
+    this.requireSpecialCharacter = false
     this.show = false;
     this.checkEmail = true;
-    this.requireLenght = true;
+    this.requireLenght = false;
     if (this.validateEmail(this.email) === false){
       this.checkEmail = false;
     }
     else if (this.password.length < 8) {
-      this.requireLenght = false;
+      this.requireLenght = true;
+    }
+    else if(!this.password.match(this.require)) {
+      this.requireSpecialCharacter = true;
     }
     else {
       this.userService.register(this.email.toString(), this.password.toString(), this);
